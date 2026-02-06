@@ -3,8 +3,8 @@ import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import ActiveStaff from '../components/admin/ActiveStaff';
 import FullHistory from '../components/admin/FullHistory';
 import ManageStaff from '../components/admin/ManageStaff';
-import ManageDevices from '../components/admin/ManageDevices';
 import EmployeeAnalytics from '../components/admin/EmployeeAnalytics';
+import Settings from '../components/admin/Settings';
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('adminAuth') === 'true');
@@ -47,7 +47,7 @@ const Admin = () => {
           <Link to="/admin/history" className="p-3 rounded-xl hover:bg-gray-700 transition font-bold whitespace-nowrap">📋 Povijest</Link>
           <Link to="/admin/staff" className="p-3 rounded-xl hover:bg-gray-700 transition font-bold whitespace-nowrap">👥 Radnici</Link>
           <Link to="/admin/analytics" className="p-3 rounded-xl hover:bg-gray-700 transition font-bold whitespace-nowrap">📊 Izvještaji</Link>
-          <Link to="/admin/devices" className="p-3 rounded-xl hover:bg-gray-700 transition font-bold whitespace-nowrap">📱 Uređaji</Link>
+          <Link to="/admin/settings" className="p-3 rounded-xl hover:bg-gray-700 transition font-bold whitespace-nowrap">⚙️ Postavke</Link>
           <button onClick={handleLogout} className="p-3 rounded-xl bg-red-900/30 text-red-400 font-bold md:mt-auto">Odjava</button>
         </nav>
       </div>
@@ -59,7 +59,7 @@ const Admin = () => {
           <Route path="history" element={<FullHistory />} />
           <Route path="staff" element={<ManageStaff />} />
           <Route path="analytics" element={<EmployeeAnalytics />} />
-          <Route path="devices" element={<ManageDevices />} />
+          <Route path="settings" element={<Settings />} />
           <Route path="/" element={<div className="text-center mt-20 text-gray-400 font-bold italic text-xl">Dobrodošli, šefe. Odaberite opciju iz izbornika.</div>} />
         </Routes>
       </div>
