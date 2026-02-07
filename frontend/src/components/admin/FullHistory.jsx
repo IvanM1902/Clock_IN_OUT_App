@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8080";
-const API_EMPLOYEES = `${API_BASE}/api/employees`;
-const API_ATTENDANCE = `${API_BASE}/api/attendance`;
+const API_EMPLOYEES = `${API_BASE}/employees`;
+const API_ATTENDANCE = `${API_BASE}/attendance`;
 
 function FullHistory() {
   const [history, setHistory] = useState([]);

@@ -13,8 +13,8 @@ function EmployeeAnalytics() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/employees`).then(res => res.json()).then(setEmployees);
-    fetch(`${API_BASE}/api/attendance/available-periods`)
+    fetch(`${API_BASE}/employees`).then(res => res.json()).then(setEmployees);
+    fetch(`${API_BASE}/attendance/available-periods`)
       .then(res => res.json())
       .then(data => {
         setAvailablePeriods(data);
@@ -37,12 +37,12 @@ function EmployeeAnalytics() {
         const monthsToFetch = availablePeriods[selectedYear] || [];
         const results = await Promise.all(
           monthsToFetch.map(m =>
-            fetch(`${API_BASE}/api/attendance/report/${selectedEmpId}?year=${selectedYear}&month=${m}`).then(r => r.json())
+            fetch(`${API_BASE}/attendance/report/${selectedEmpId}?year=${selectedYear}&month=${m}`).then(r => r.json())
           )
         );
         setReportData(Object.assign({}, ...results));
       } else {
-        const res = await fetch(`${API_BASE}/api/attendance/report/${selectedEmpId}?year=${selectedYear}&month=${selectedMonth}`);
+        const res = await fetch(`${API_BASE}/attendance/report/${selectedEmpId}?year=${selectedYear}&month=${selectedMonth}`);
         setReportData(await res.json());
       }
     } catch (err) { console.error(err); }

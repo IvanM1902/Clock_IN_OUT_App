@@ -11,7 +11,7 @@ const Settings = () => {
 
   const fetchDevices = async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/settings/all-devices`);
+      const res = await fetch(`${API_BASE}/settings/all-devices`);
       const data = await res.json();
       setDevices(data);
     } catch (err) { console.error(err); }
@@ -31,7 +31,7 @@ const Settings = () => {
 
     setLoading(true);
     try {
-      const res = await fetch(`${API_BASE}/api/settings/authorize-this-device?uuid=${myUuid}&name=${encodeURIComponent(deviceName)}`, {
+      const res = await fetch(`${API_BASE}/settings/authorize-this-device?uuid=${myUuid}&name=${encodeURIComponent(deviceName)}`, {
         method: 'POST'
       });
       const msg = await res.text();
@@ -50,7 +50,7 @@ const Settings = () => {
 
     try {
       // Pazi na putanju: u tvom AppSettingsControlleru je /revoke-device/{id}
-      await fetch(`${API_BASE}/api/settings/revoke-device/${id}`, { method: 'DELETE' });
+      await fetch(`${API_BASE}/settings/revoke-device/${id}`, { method: 'DELETE' });
       fetchDevices();
     } catch (err) {
       alert("Greška pri brisanju.");

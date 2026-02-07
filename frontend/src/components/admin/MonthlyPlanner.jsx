@@ -13,7 +13,7 @@ const MonthlyPlanner = () => {
   const [editModal, setEditModal] = useState({ open: false, date: '', inTime: '', outTime: '' });
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/employees`).then(res => res.json()).then(setEmployees);
+    fetch(`${API_BASE}/employees`).then(res => res.json()).then(setEmployees);
   }, []);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const MonthlyPlanner = () => {
     setLoading(true);
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth() + 1;
-    const res = await fetch(`${API_BASE}/api/attendance/report/${selectedEmp}?year=${year}&month=${month}`);
+    const res = await fetch(`${API_BASE}/attendance/report/${selectedEmp}?year=${year}&month=${month}`);
     const data = await res.json();
     setReportData(data);
     setLoading(false);
@@ -57,7 +57,7 @@ const MonthlyPlanner = () => {
 
     // Možemo dodati poseban API poziv da dobijemo točne zapise za taj dan
     try {
-      const res = await fetch(`${API_BASE}/api/attendance/logs?employeeId=${selectedEmp}&date=${dateKey}`);
+      const res = await fetch(`${API_BASE}/attendance/logs?employeeId=${selectedEmp}&date=${dateKey}`);
       const logs = await res.json(); // Očekujemo listu IN/OUT zapisa
 
       const inLog = logs.find(l => l.type === 'IN');
@@ -72,7 +72,7 @@ const MonthlyPlanner = () => {
 
   const saveManualTimes = async () => {
     setLoading(true);
-    await fetch(`${API_BASE}/api/attendance/manual-time`, {
+    await fetch(`${API_BASE}/attendance/manual-time`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -96,7 +96,7 @@ const MonthlyPlanner = () => {
     setLoading(true);
     for (const day of selectedDays) {
       const dateKey = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-      await fetch(`${API_BASE}/api/attendance/manual?employeeId=${selectedEmp}&date=${dateKey}&type=${type}`, { method: 'POST' });
+      await fetch(`${API_BASE}/attendance/manual?employeeId=${selectedEmp}&date=${dateKey}&type=${type}`, { method: 'POST' });
     }
     setSelectedDays([]);
     fetchReport();

@@ -12,14 +12,14 @@ const DashboardHome = () => {
 
   useEffect(() => {
     // Dohvati sve radnike za ukupan broj
-    fetch(`${API_BASE}/api/employees`)
+    fetch(`${API_BASE}/employees`)
       .then(res => res.json())
       .then(emps => {
         setStats(prev => ({ ...prev, totalEmployees: emps.length }));
       });
 
     // Dohvati status za trenutno prisutne i zadnju aktivnost
-    fetch(`${API_BASE}/api/attendance/status`)
+    fetch(`${API_BASE}/attendance/status`)
       .then(res => res.json())
       .then(logs => {
         const present = logs.filter(l => l.type === 'IN').length;

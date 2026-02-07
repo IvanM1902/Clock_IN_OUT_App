@@ -15,7 +15,7 @@ function Terminal() {
     setMyUuid(uuid);
 
     if (uuid) {
-      fetch(`${API_BASE}/api/settings/check-device?uuid=${uuid}`)
+      fetch(`${API_BASE}/settings/check-device?uuid=${uuid}`)
         .then(res => res.json())
         .then(data => {
           setIsAuthorized(data.isAllowed);
@@ -36,7 +36,7 @@ function Terminal() {
       setTimeout(() => setMessage('Unesite PIN'), 2000);
       return;
     }
-    fetch(`${API_BASE}/api/attendance/punch?pin=${pin}`, { method: 'POST' })
+    fetch(`${API_BASE}/attendance/punch?pin=${pin}`, { method: 'POST' })
       .then(res => res.text())
       .then(msg => {
         setMessage(msg);
