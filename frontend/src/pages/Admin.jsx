@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import DashboardHome from '../components/admin/DashboardHome';
 import ActiveStaff from '../components/admin/ActiveStaff';
 import FullHistory from '../components/admin/FullHistory';
 import ManageStaff from '../components/admin/ManageStaff';
 import EmployeeAnalytics from '../components/admin/EmployeeAnalytics';
+import MonthlyPlanner from '../components/admin/MonthlyPlanner';
 import Settings from '../components/admin/Settings';
 
 const Admin = () => {
@@ -47,7 +49,8 @@ const Admin = () => {
           <Link to="/admin/history" className="p-3 rounded-xl hover:bg-gray-700 transition font-bold whitespace-nowrap">📋 Povijest</Link>
           <Link to="/admin/staff" className="p-3 rounded-xl hover:bg-gray-700 transition font-bold whitespace-nowrap">👥 Radnici</Link>
           <Link to="/admin/analytics" className="p-3 rounded-xl hover:bg-gray-700 transition font-bold whitespace-nowrap">📊 Izvještaji</Link>
-          <Link to="/admin/settings" className="p-3 rounded-xl hover:bg-gray-700 transition font-bold whitespace-nowrap">⚙️ Postavke</Link>
+          <Link to="/admin/planer" className="p-3 rounded-xl hover:bg-gray-700 transition font-bold whitespace-nowrap">📅 PLANER</Link>
+          <Link to="/admin/settings" className="p-3 rounded-xl hover:bg-gray-700 transition font-bold whitespace-nowrap">⚙️ Terminali</Link>
           <button onClick={handleLogout} className="p-3 rounded-xl bg-red-900/30 text-red-400 font-bold md:mt-auto">Odjava</button>
         </nav>
       </div>
@@ -55,10 +58,12 @@ const Admin = () => {
       {/* Sadržaj - Ovdje se učitavaju ostali fileovi */}
       <div className="flex-1 p-4 md:p-10">
         <Routes>
+            <Route index element={<DashboardHome />} />
           <Route path="active" element={<ActiveStaff />} />
           <Route path="history" element={<FullHistory />} />
           <Route path="staff" element={<ManageStaff />} />
           <Route path="analytics" element={<EmployeeAnalytics />} />
+          <Route path="planer" element={<MonthlyPlanner />} />
           <Route path="settings" element={<Settings />} />
           <Route path="/" element={<div className="text-center mt-20 text-gray-400 font-bold italic text-xl">Dobrodošli, šefe. Odaberite opciju iz izbornika.</div>} />
         </Routes>

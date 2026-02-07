@@ -10,14 +10,9 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                // Dopušta pristup s tvog laptopa i s mobitela koji koristi tvoj IP
-                .allowedOrigins(
-                        "http://localhost:5173",
-                        "http://127.0.0.1:5173",
-                        "http://192.168.0.53:5173"
-                )
+                .allowedOriginPatterns("*") // Ovo dopušta sve, ali na sigurniji način od "*"
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
-                .allowCredentials(false); // Isključeno kako bi izbjegli konflikt sa sigurnosnim pravilima
+                .allowCredentials(true);
     }
 }

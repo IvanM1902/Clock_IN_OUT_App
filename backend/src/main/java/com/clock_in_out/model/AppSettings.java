@@ -7,6 +7,17 @@ import lombok.*;
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class AppSettings {
     @Id
-    private String id = "APP_CONFIG";
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(unique = true)
     private String allowedDeviceUuid;
+
+    private String deviceName;
+
+    // DODAJ OVAJ KONSTRUKTOR RUČNO:
+    public AppSettings(String uuid, String name) {
+        this.allowedDeviceUuid = uuid;
+        this.deviceName = name;
+    }
 }

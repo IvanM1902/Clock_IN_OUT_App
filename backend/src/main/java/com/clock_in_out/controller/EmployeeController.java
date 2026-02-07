@@ -9,7 +9,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/employees")
-@CrossOrigin(origins = "*") // Bitno za kasnije povezivanje s Reactom
 public class EmployeeController {
 
     private final EmployeeRepository employeeRepository;

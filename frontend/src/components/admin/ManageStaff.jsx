@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 
-const API_EMPLOYEES = "http://192.168.0.53:8080/api/employees";
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8080";
+
+const API_EMPLOYEES = `${API_BASE}/api/employees`;
+const API_ATTENDANCE = `${API_BASE}/api/attendance`;
 
 function ManageStaff() {
   const [employees, setEmployees] = useState([]);
